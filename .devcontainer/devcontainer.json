@@ -1,0 +1,6 @@
+{
+  "name": "purescript-presto",
+  "remoteUser": "vscode",
+  "dockerFile": "Dockerfile"
+}
+
