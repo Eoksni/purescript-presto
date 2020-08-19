@@ -77,6 +77,9 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
 # haskell stack
 RUN curl -sSL https://get.haskellstack.org/ | sh
 
+# to compile some of npm dependency
+RUN apt-get update && apt-get install -y autoconf libpng-dev
+
 # Switch back to dialog for any ad-hoc use of apt-get
 ENV DEBIAN_FRONTEND=dialog
 
