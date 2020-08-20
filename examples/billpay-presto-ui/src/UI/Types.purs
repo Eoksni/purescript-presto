@@ -17,8 +17,8 @@ data SplashScreenAction = SplashScreenRendered
 data ChooseOperatorScreen = ChooseOperatorScreen (Array Operator)
 data ChooseOperatorScreenAction = OperatorSelected Operator | ChooseOperatorScreenAbort
 
-data AskMobileNumberScreen = AskMobileNumberScreen
-data AskMobileNumberScreenAction = SubmitMobileNumber MobileNumber | AskMobileNumberScreenAbort
+data AskMobileNumberScreen = AskMobileNumberScreen String
+data AskMobileNumberScreenAction = SubmitMobileNumber MobileNumber | AskMobileNumberScreenNotEnoughNumbers | AskMobileNumberScreenAbort
 
 data AskAmountScreen = AskAmountScreen
 data AskAmountScreenAction = SubmitAmount Amount | AskAmountScreenAbort

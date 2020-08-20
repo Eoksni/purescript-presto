@@ -1,8 +1,10 @@
 module UI.Flow where
 
-import Prelude (bind, pure)
+import Effect.Console (log)
+import Effect.Unsafe (unsafePerformEffect)
 import Engineering.Helpers.Commons (runUI')
-import Engineering.Types.App (Flow,liftLeft)
+import Engineering.Types.App (Flow, liftLeft)
+import Prelude (bind, pure)
 import Product.Types (Operator, MobileNumber, Amount, BillPayFailure(..), BillPayStatus)
 import UI.Types (AskAmountScreen(..), AskAmountScreenAction(..), AskMobileNumberScreen(..), AskMobileNumberScreenAction(..), ChooseOperatorScreen(..), ChooseOperatorScreenAction(..), SplashScreen(..), SplashScreenAction(..), StatusScreen(..), StatusScreenAction(..))
 
@@ -20,13 +22,19 @@ chooseOperator operators = do
 		OperatorSelected operator-> pure operator
 		ChooseOperatorScreenAbort -> liftLeft UserAbort
 	
-
-askMobileNumber :: Flow BillPayFailure MobileNumber
-askMobileNumber = do
-	action <- runUI' AskMobileNumberScreen
+askMobileNumber' :: String -> Flow BillPayFailure MobileNumber
+askMobileNumber' errMsg = do
+	action <- runUI' (AskMobileNumberScreen errMsg)
 	case action of
 		SubmitMobileNumber mobileNumber -> pure mobileNumber
+		AskMobileNumberScreenNotEnoughNumbers -> do
+			-- TODO: without splash screen, it doesn't update the state
+			_ <- splashScreen
+			askMobileNumber' "Not Enough Numbers"
 		AskMobileNumberScreenAbort -> liftLeft UserAbort
+
+askMobileNumber :: Flow BillPayFailure MobileNumber
+askMobileNumber = askMobileNumber' ""
 
 askAmount :: Flow BillPayFailure Amount
 askAmount = do

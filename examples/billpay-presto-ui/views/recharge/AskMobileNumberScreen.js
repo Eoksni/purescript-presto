@@ -37,6 +37,16 @@ class AskMobileNumberScreen extends Controller {
 				root={true}
 				accessibilityHint={HINT.MOBILENUMBERSCREEN_SCREEN_2}
 				style={this.style_Screen_2}>
+				<TextView
+				    id={this.idSet.ErrorMessage}
+				    height="20"
+				    width="match_parent"
+				    textSize="16"
+				    color="#89000000"
+				    fontStyle="Source Sans Pro-Regular"
+				    gravity="left"
+				    text={this.errorMessage}
+				    style={this.style_ErrorMessage} />
 				<LinearLayout
 					id={this.idSet.HeaderWithArrow}
 					height="64"

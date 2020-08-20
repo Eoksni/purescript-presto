@@ -4,6 +4,7 @@ class AskMobileNumberScreen extends View {
 
 	constructor(props, children, state) {
 		super(props, children, state);
+		this.errorMessage = state.contents;
 		this.shouldCacheScreen = false;
 	
 		this.mobileNumber = "";
@@ -25,7 +26,6 @@ class AskMobileNumberScreen extends View {
 		this.style_Icon = {
 			onClick : this.onBackPressed.bind(this)
 		}
-
 	}
 
 	onEnteringMobileNumber = (data) => {
@@ -36,11 +36,18 @@ class AskMobileNumberScreen extends View {
 	onRechargeClick = () => {
 		if(this.mobileNumber.length == 10){
 			window.__runDuiCallback(JSON.stringify({tag:"SubmitMobileNumber",contents:this.mobileNumber}));
+		} else {
+			window.__runDuiCallback(JSON.stringify({tag:"AskMobileNumberScreenNotEnoughNumbers"}));
 		}
 	}
 
 	onBackPressed = () => {
 		window.__runDuiCallback(JSON.stringify({tag:"AskMobileNumberScreenAbort"}));
+	}
+
+	handleStateChange = (state) => {
+		this.errorMessage = state.contents;
+		// TODO: how to trigger a rerender?
 	}
 }
 
