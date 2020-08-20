@@ -4,3 +4,4 @@ output/
 bower_components/
 node_modules/
 .pulp-cache
+.psc-ide-port
