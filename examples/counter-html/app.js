@@ -3,6 +3,10 @@ window.__duiShowScreen = function(callBack, data) {
   document.getElementById("text").innerHTML = data.contents;
 };
 
-document.getElementById("button").addEventListener("click", function() {
-  window.callBack("{}")();
+document.getElementById("button-increment").addEventListener("click", function() {
+  window.callBack("{\"tag\": \"Increment\"}")();
+});
+
+document.getElementById("button-decrement").addEventListener("click", function() {
+  window.callBack("{\"tag\": \"Decrement\"}")();
 });

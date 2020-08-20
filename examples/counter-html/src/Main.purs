@@ -23,9 +23,12 @@ foreign import showUI' :: Fn2 (String -> Effect Unit) String (Effect Unit)
 -- Presents UI to user, waits to action and recurse.
 count :: Int -> Flow Unit
 count val = do
-  Increment <- runUI $ CounterScreen val
-  count $ val + 1
-
+  action <- runUI $ CounterScreen val
+  let val' = case action of
+               Increment -> val + 1
+               Decrement -> val - 1
+  count val'
+  
 appFlow :: Flow Unit
 appFlow = do
   count 0 *> pure unit
@@ -53,7 +56,7 @@ main = launchApp
 -- Creating Screen
 
 data CounterScreen = CounterScreen Int
-data CounterScreenAction = Increment
+data CounterScreenAction = Increment | Decrement
 
 instance counterScreenInteract :: Interact Error CounterScreen CounterScreenAction  where
   interact x = defaultInteract x
