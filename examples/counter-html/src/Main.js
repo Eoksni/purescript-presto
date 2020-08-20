@@ -7,19 +7,19 @@ exports["showUI'"] = function(sc,screen) {
   }
 };
 
-exports["getPermissionStatus'"] = function(err, success, permission) {
-  return function() {
-    console.log("Yet to implement");
-  }
-};
+// exports["getPermissionStatus'"] = function(err, success, permission) {
+//   return function() {
+//     console.log("Yet to implement");
+//   }
+// };
 
-exports["requestPermission'"] = function(err, success, permissions) {
-  return function() {
-    console.log("Yet to implement");
-  }
-};
+// exports["requestPermission'"] = function(err, success, permissions) {
+//   return function() {
+//     console.log("Yet to implement");
+//   }
+// };
 
-exports["callAPI'"] = function() {
-  console.log("Yet to implement");
-}
+// exports["callAPI'"] = function() {
+//   console.log("Yet to implement");
+// }
 

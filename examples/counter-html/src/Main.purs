@@ -18,7 +18,7 @@ import Presto.Core.Types.Language.Flow (Flow)
 import Presto.Core.Types.Permission (Permission, PermissionResponse, PermissionStatus(PermissionGranted))
 
 -- FFI to render UI
-foreign import showUI' :: forall e. Fn2 (String -> Effect Unit) String (Effect Unit)
+foreign import showUI' :: Fn2 (String -> Effect Unit) String (Effect Unit)
 
 -- Presents UI to user, waits to action and recurse.
 count :: Int -> Flow Unit
@@ -67,8 +67,8 @@ instance decodeCounterScreenAction :: Decode CounterScreenAction where
   decode = genericDecode (defaultOptions {unwrapSingleConstructors = true})
 
 
-defaultPermissionStatus :: forall e. Array Permission -> Aff PermissionStatus
+defaultPermissionStatus :: Array Permission -> Aff PermissionStatus
 defaultPermissionStatus permissions = makeAff (\callback -> (Right >>> callback) PermissionGranted *> pure nonCanceler)
 
-defaultPermissionRequest :: forall e. Array Permission -> Aff (Array PermissionResponse)
+defaultPermissionRequest :: Array Permission -> Aff (Array PermissionResponse)
 defaultPermissionRequest permissions = makeAff (\callback -> (Right >>> callback) [] *> pure nonCanceler)
