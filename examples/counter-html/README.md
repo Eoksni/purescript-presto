@@ -11,8 +11,14 @@ bower i
 # Building
 
 ```
-pulp build --to index.js
+npm run build
 ```
 
-Open index.html in your browser.
+# Start
+
+```
+npm start
+```
+
+Open http://localhost:8080 in your browser.
 

@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "pulp build --to index.js",
+    "start": "http-server -c-1"
+  },
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "pulp": "^15.0.0",
+    "purs": "^0.3.0"
+  }
+}

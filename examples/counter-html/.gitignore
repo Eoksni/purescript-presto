@@ -1,2 +1,4 @@
 bower_components/
 output/
+node_modules/
+.psc-ide-port
